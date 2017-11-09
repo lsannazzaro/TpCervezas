@@ -36,6 +36,11 @@ class UsuariosDaos extends Singleton {
 				//var_dump($row);
 		}
 		if(!empty($array)){
+
+			
+		
+			 $_SESSION['Usuario'] = $array;
+		
 			return $array;
 
 		}

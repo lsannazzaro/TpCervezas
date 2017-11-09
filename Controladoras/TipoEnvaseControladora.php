@@ -11,6 +11,11 @@ class TipoEnvaseControladora{
     	
     }
 
+public function vista(){
+
+	require_once('Vistas/VistaEnvases.php');
+}
+
 public function gestionEnvases(){
 
 	$listadoE = $this->datosenvase->traerTodos();

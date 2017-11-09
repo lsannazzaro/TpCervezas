@@ -14,10 +14,10 @@
 
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Sucursales</a>
+        <a class="nav-link" href="<?=FRONT?>TipoSucursales/vista">Sucursales</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Envases</a>
+        <a class="nav-link" href="<?=FRONT?>TipoEnvase/vista">Envases</a>
       </li>
     </ul>
 <form class="form-inline my-2 my-md-0">

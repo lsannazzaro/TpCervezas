@@ -34,6 +34,8 @@ public function validarRolSession($email){
         if($this->datosUsuario->isAdmin($email)){
             
             echo ' Login Admin';
+            var_dump($_SESSION);
+            var_dump($_SESSION['Usuario']);
 
         }
         else if($this->datosUsuario->isUser($email)){
