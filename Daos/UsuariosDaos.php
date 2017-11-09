@@ -41,8 +41,8 @@ class UsuariosDaos extends Singleton {
 		}
 
 	}
-	public function isValid($Dni, $Pass){
-		$sql = "SELECT * FROM Usuarios WHERE Email = " . "'". $Dni . "'". " and Pass = " . "'" .$Pass ."'";
+	public function isValid($Email, $Pass){
+		$sql = "SELECT * FROM Usuarios WHERE Email = " . "'". $Email . "'". " and Pass = " . "'" .$Pass ."'";
 			//$sql = "SELECT Rol FROM " . $this->tabla . " WHERE Dni=" . $Dni;
                var_dump($sql);
 
@@ -69,9 +69,35 @@ class UsuariosDaos extends Singleton {
 	}
 
 	public function isAdmin($Email){
-		$sql = "SELECT * FROM Usuarios WHERE Dni = $Dni and Rol = 'admin' ";
+		$sql = "SELECT * FROM ". $this->tabla. " WHERE Email = " . "'" .$Email. "'"." and Rol = 'admin'";
 			//$sql = "SELECT Rol FROM " . $this->tabla . " WHERE Dni=" . $Dni;
-                //var_dump($sql);
+                var_dump($sql);
+
+            // creo el objeto conexion
+		$obj_pdo = new Conexion();
+
+			// Conecto a la base de datos.
+		$conexion = $obj_pdo->conectar();
+
+			// Creo una sentencia llamando a prepare. Esto devuelve un objeto statement
+		$sentencia = $conexion->prepare($sql);
+			//var_dump($sentencia);
+
+			// Ejecuto la sentencia.
+		$sentencia->execute();
+		while ($row = $sentencia->fetch()) {
+			$array[] = $row;
+		}
+		if(!empty($array)){
+			return $array;
+		}
+	}
+
+	public function isUser($Email){
+		
+		$sql = "SELECT * FROM ". $this->tabla. " WHERE Email = " . "'" .$Email. "'"." and Rol = 'usuario'";
+			//$sql = "SELECT Rol FROM " . $this->tabla . " WHERE Dni=" . $Dni;
+                var_dump($sql);
 
             // creo el objeto conexion
 		$obj_pdo = new Conexion();

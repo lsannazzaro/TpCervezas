@@ -31,17 +31,12 @@ class TipoUsuarioControladora{
 
 public function validarRolSession($email){
        
-        if($this->datosUsuarios->isAdmin($email)){
+        if($this->datosUsuario->isAdmin($email)){
             
-            $listaPeliculas = new \Daos\PeliculasDao();
-            $listadoP = $listaPeliculas->traerTodos();
-            $listaGeneros = new\Daos\GenerosDao();
-            $listadoC = $listaGeneros->traerTodos();
-            
-            require_once('Vistas/peliculas.php');
-            
+            echo ' Login Admin';
+
         }
-        else if($usuarios->isUser($Dni)){
+        else if($this->datosUsuario->isUser($email)){
             echo ' Login User';
 
         }
