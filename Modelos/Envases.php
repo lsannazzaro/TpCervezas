@@ -8,7 +8,7 @@ class Envases {
 	private $coeficiente;
 	
 
-	function __construct($nombre = '', $capacidad = '',$coeficiente = '')
+	function __construct($nombre = '', $capacidad,$coeficiente)
 	{
 		
 		$this->nombre = $nombre;

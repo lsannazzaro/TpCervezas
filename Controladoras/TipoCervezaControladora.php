@@ -20,6 +20,7 @@ class TipoCervezaControladora{
     public function inicio(){
 
     	require_once ('Vistas/Index.php');
+    	
     }
 
 

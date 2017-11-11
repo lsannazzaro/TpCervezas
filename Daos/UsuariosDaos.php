@@ -47,9 +47,9 @@ class UsuariosDaos extends Singleton {
 
 	}
 	public function isValid($Email, $Pass){
+		
 		$sql = "SELECT * FROM Usuarios WHERE Email = " . "'". $Email . "'". " and Pass = " . "'" .$Pass ."'";
-			//$sql = "SELECT Rol FROM " . $this->tabla . " WHERE Dni=" . $Dni;
-               var_dump($sql);
+			
 
             // creo el objeto conexion
 		$obj_pdo = new Conexion();
@@ -94,6 +94,7 @@ class UsuariosDaos extends Singleton {
 			$array[] = $row;
 		}
 		if(!empty($array)){
+
 			return $array;
 		}
 	}

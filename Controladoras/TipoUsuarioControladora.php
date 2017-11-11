@@ -13,13 +13,15 @@ class TipoUsuarioControladora{
 
 	public function logearse($email,$pass){
 		
-		$valides=$this->datosUsuario->traerUno($email);
+		$valides = $this->datosUsuario->traerUno($email);
 
         if($valides==NULL){
+            
             echo 'Email inexistente';
-        }
-        else{
-            $UserArray=$this->datosUsuario->isValid($email, $pass);
+
+        }else{
+
+            $UserArray = $this->datosUsuario->isValid($email, $pass);
             if($UserArray==NULL){
                 echo 'Contraseña incorrecta';
             }

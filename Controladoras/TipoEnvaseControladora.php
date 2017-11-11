@@ -2,86 +2,75 @@
 
 class TipoEnvaseControladora{
 
-	private $datosenvase ;
+	
+	private $datosenvase ; // Variable de tipo Singleton. Una sola instancia del Daos 
   
    
+    //Constructor. 
     function __construct(){
 
     	$this->datosenvase = \Daos\EnvasesDaos::getInstancia();
     	
     }
 
-public function vista(){
+	
+	public function vista(){
 
-	require_once('Vistas/VistaEnvases.php');
-}
-
-public function gestionEnvases(){
-
-	$listadoE = $this->datosenvase->traerTodos();
-	require_once ('Vistas/TiposEnvases.php');
-
-}
-
-public function Nuevo($nombre,$capacidad,$coeficiente){
-		
-		$Nuevo = new \Modelos\Envases($nombre,$capacidad,$coeficiente); //Creo un Objeto de tipo Cerveza
-		$this->datosenvase->Insertar($Nuevo);
-		$listadoE = $this->datosenvase->traerTodos();
-		//$_SESSION["ListaCerveza"] = $ListaCerveza;
-		
-
-		require_once('Vistas/TiposCervezas.php');
+		require_once('Vistas/VistaEnvases.php');
 	
 	}
 
-	public function VerCervezas(){
+
+	public function gestionEnvases(){
+
+		$this->VerEnvases();
+
+	}
+
+	public function Nuevo($nombre,$capacidad,$coeficiente){
 		
-		 //$ListaCerveza1  = new \Daos\CervezasDaos();
-		$listadoC = $this->datoscerveza->traerTodos();
-		 //var_dump($listadoC);
-		 //var_dump($this->datoscerveza);
-		 require_once('Vistas/TiposCervezasTabla.php');
+		$Nuevo = new \Modelos\Envases($nombre,$capacidad,$coeficiente); //Creo un Objeto de tipo Envase
+		$this->datosenvase->Insertar($Nuevo);
+		$this->VerEnvases();
+	
+	}
+
+	public function VerEnvases(){
+		
+		$listadoE = $this->datosenvase->traerTodos();
+		require_once('Vistas/TiposEnvases.php');
+
 	}
 
 	public function borrarTodos(){
 
-		$this->datoscerveza->eliminarT();
-		$listadoC = $this->datoscerveza->traerTodos();
-		include ('Vistas/TiposCervezas.php');
+		$this->datosenvase->eliminarT();
+		$this->VerEnvases();
 
 	}
 
+	
 	public function Borrar($id){
 		
-		
-		$this->datoscerveza->eliminar($id);
-		$listadoC = $this->datoscerveza->traerTodos();
-		include ('Vistas/TiposCervezas.php');
+		$this->datosenvase->eliminar($id);
+		$this->VerEnvases();
+	
 	}
 	
 
-	public function Actualizar($id,$nombre,$descripcion,$precio){
+	public function Actualizar($id,$nombre,$capacidad,$coeficiente){
 
-		$this->datoscerveza->actualizar($id,$nombre,$descripcion,$precio);
-		$listadoC = $this->datoscerveza->traerTodos();
-		require_once ('Vistas/TiposCervezas.php');
+		$this->datosenvase->actualizar($id,$nombre,$capacidad,$coeficiente);
+		$this->VerEnvases();
 
 	}
 
-	public function Modificar($id,$nombre,$descripcion,$precio){
-
+	public function Modificar($id,$Nombre,$Capacidad,$Coeficiente){		
 		
-		
-		include ('Vistas/ModificarCerveza.php');
+		include ('Vistas/ModificarEnvase.php');
 	
 	}
 
-	public function dameLista(){
-		return $this->ListaCerveza;
-	}
 }
-
-
 
 ?>

@@ -1,4 +1,4 @@
-<?php namespace daos;
+<?php namespace Daos;
 
 define("DB_HOST","localhost");
 define("DB_NAME","lea");
